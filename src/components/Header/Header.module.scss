@@ -1,0 +1,11 @@
+.header {
+  &_wrapper {
+    padding: 1.4em 2em;
+    display: flex;
+    align-items: center;
+    &_logo {
+      width: 150px;
+      height: 60px;
+    }
+  }
+}
