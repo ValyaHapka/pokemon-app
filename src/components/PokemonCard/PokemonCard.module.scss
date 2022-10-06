@@ -1,0 +1,11 @@
+.card {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  img {
+    width: 160px;
+    height: 200px;
+  }
+}

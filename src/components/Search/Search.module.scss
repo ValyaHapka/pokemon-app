@@ -1,5 +1,4 @@
 .search {
-  margin-left: auto;
   position: relative;
   display: flex;
   align-items: center;
@@ -29,6 +28,7 @@
     right: 15px;
     opacity: 0.3;
     transition: 0.3s;
+    cursor: pointer;
     &:hover {
       opacity: 1;
     }

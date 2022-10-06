@@ -1,10 +1,11 @@
 import React from 'react';
 
 import pokelogo from '../../assets/png/pokelogo.png';
+
 import Search from '../Search';
 import styles from './Header.module.scss';
 
-export default function Header() {
+const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.header_wrapper}>
@@ -13,4 +14,5 @@ export default function Header() {
       </div>
     </header>
   );
-}
+};
+export default Header;

@@ -1,11 +1,32 @@
 .header {
+  background-color: rgb(189, 102, 102);
   &_wrapper {
-    padding: 1.4em 2em;
+    position: relative;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 1.6rem;
+
     &_logo {
       width: 150px;
       height: 60px;
+    }
+    &_burger {
+      border: none;
+      background: transparent;
+      transition: 0.3s;
+      cursor: pointer;
+      &_active {
+        transform: rotate(90deg);
+        border: none;
+        background: transparent;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      &_logo {
+        width: 30px;
+        height: 30px;
+      }
     }
   }
 }

@@ -4,7 +4,7 @@ import searchImg from '../../assets/svg/search.svg';
 import closeImg from '../../assets/svg/close.svg';
 import styles from './Search.module.scss';
 
-export default function Search() {
+const Search = React.memo((props) => {
   const inputRef = useRef();
   const [localValue, setLocalValue] = useState('');
 
@@ -30,4 +30,5 @@ export default function Search() {
       )}
     </div>
   );
-}
+});
+export default Search;
