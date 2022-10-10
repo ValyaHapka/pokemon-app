@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 import styles from './Sidebar.module.scss';
 
-const types = [
+export const types = [
   'All',
   'normal',
   'fighting',
@@ -25,13 +25,7 @@ const types = [
   'shadow',
 ];
 
-const Sidebar = () => {
-  const [selectedType, setSelectedType] = useState('All');
-
-  const onClickType = useCallback((e) => {
-    setSelectedType(e.target.outerText);
-  }, []);
-
+const Sidebar = ({ selectedType, onClickType }) => {
   return (
     <div className={styles.sidebar}>
       <h2>Types:</h2>
