@@ -1,15 +1,22 @@
 .content {
+  max-width: 1440px;
   display: flex;
-  justify-content: space-between;
   &_filters {
     display: flex;
     justify-content: flex-start;
     margin-left: 1.5em;
   }
   &_list {
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-column-gap: 15px;
     padding-left: 50px;
+    position: relative;
+    span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
   }
 }
