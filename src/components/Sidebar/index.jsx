@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Sidebar.module.scss';
 
@@ -25,25 +26,12 @@ export const types = [
   'shadow',
 ];
 
-const Sidebar = ({ initialState, setPokes }) => {
-  const [selectedType, setSelectedType] = useState('All');
+const Sidebar = () => {
+  const dispatch = useDispatch();
+  const selectedType = useSelector((state) => state.selectedType);
 
-  const onClickType = (e) => {
-    const pokesArr = initialState.filter((poke) => {
-      if (e.target.outerText === 'All') {
-        return initialState;
-      }
-      if (poke.types.length > 1) {
-        return (
-          poke.types[0].type.name === e.target.outerText ||
-          poke.types[1].type.name === e.target.outerText
-        );
-      } else {
-        return poke.types[0].type.name === e.target.outerText;
-      }
-    });
-    setSelectedType(e.target.outerText);
-    setPokes(pokesArr);
+  const filterPokes = (e) => {
+    dispatch({ type: 'FILTER_BY_TYPE', payload: e.target.outerText });
   };
 
   return (
@@ -55,7 +43,7 @@ const Sidebar = ({ initialState, setPokes }) => {
             <li
               key={t}
               className={selectedType === t ? styles.sidebar_active : ''}
-              onClick={onClickType}>
+              onClick={filterPokes}>
               {t}
             </li>
           );

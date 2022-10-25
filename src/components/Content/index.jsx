@@ -4,17 +4,34 @@ import axios from 'axios';
 import PokemonCard from '../PokemonCard';
 import Sidebar from '../Sidebar';
 import styles from './Content.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
 
-const Content = React.memo(({ pokes, setPokes, initialState, setInitialState }) => {
+const Content = () => {
+  const dispatch = useDispatch();
+  const { pokes, initialState } = useSelector((state) => state);
   const url = 'https://pokeapi.co/api/v2/pokemon?limit=20';
+
+  const setPokes = useCallback(
+    (data) => {
+      dispatch({ type: 'ADD_POKES', payload: data });
+    },
+    [dispatch],
+  );
+
+  const setInitialState = useCallback(
+    (data) => {
+      dispatch({ type: 'INITIAL_POKES', payload: data });
+    },
+    [dispatch],
+  );
 
   const getAllPokemons = useCallback(async () => {
     const query = await axios.get(url);
     function createPokemonObject(result) {
       result.forEach(async (poke) => {
         const query = await axios.get(`${poke.url}`);
-        setPokes((currentList) => [...currentList, query.data]);
-        setInitialState((currentList) => [...currentList, query.data]);
+        setPokes(query.data);
+        setInitialState(query.data);
       });
     }
     createPokemonObject(query.data.results);
@@ -27,10 +44,10 @@ const Content = React.memo(({ pokes, setPokes, initialState, setInitialState }) 
   return (
     <div className={styles.content}>
       <div className={styles.content_filters}>
-        <Sidebar initialState={initialState} setPokes={setPokes} />
+        <Sidebar initialState={initialState} />
       </div>
       <div className={styles.content_list}>
-        {pokes.length > 1 ? (
+        {pokes.length >= 1 ? (
           pokes.map((poke) => {
             return (
               <PokemonCard
@@ -42,11 +59,11 @@ const Content = React.memo(({ pokes, setPokes, initialState, setInitialState }) 
             );
           })
         ) : (
-          <span>sorry, we don't have such Pokemon</span>
+          <span>😕 sorry, we don't have such Pokemon</span>
         )}
       </div>
     </div>
   );
-});
+};
 
 export default Content;

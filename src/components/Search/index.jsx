@@ -1,31 +1,28 @@
-import React, { useCallback, useRef, useState, useContext } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import searchImg from '../../assets/svg/search.svg';
 import closeImg from '../../assets/svg/close.svg';
 import styles from './Search.module.scss';
-import { SearchContext } from '../../App';
 
-const Search = React.memo(({ initialState, setPokes }) => {
+const Search = () => {
+  const dispatch = useDispatch();
   const inputRef = useRef();
   const [localValue, setLocalValue] = useState('');
-  const { searchValue, setSearchValue } = useContext(SearchContext);
 
   const updateValues = useCallback(
     (e) => {
       setLocalValue(e.target.value);
-      setSearchValue(e.target.value);
-      const newArr = initialState.filter((p) => p.name.includes(searchValue.toLowerCase()));
-      setPokes(newArr);
+      dispatch({ type: 'SEARCH_POKES', payload: e.target.value });
     },
-    [setSearchValue, initialState, searchValue, setPokes],
+    [dispatch],
   );
 
   const deleteValues = useCallback(() => {
     setLocalValue('');
-    setSearchValue('');
-    setPokes(initialState);
+    dispatch({ type: 'DELETE_SEARCH_POKES' });
     inputRef.current.focus();
-  }, [setSearchValue, setPokes, initialState]);
+  }, [dispatch]);
 
   return (
     <div className={styles.search}>
@@ -42,5 +39,5 @@ const Search = React.memo(({ initialState, setPokes }) => {
       )}
     </div>
   );
-});
+};
 export default Search;
