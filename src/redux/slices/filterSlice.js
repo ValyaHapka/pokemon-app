@@ -41,4 +41,14 @@ const filterReducer = (state = defaultState, action) => {
       return { ...state };
   }
 };
+
+export const pokesSelector = (state) => state;
+export const typeSelector = (state) => state.selectedType;
+
+export const setInitialPokes = (payload) => ({ type: 'INITIAL_POKES', payload });
+export const setPokes = (payload) => ({ type: 'ADD_POKES', payload });
+export const filterByType = (payload) => ({ type: 'FILTER_BY_TYPE', payload });
+export const searchPokes = (payload) => ({ type: 'SEARCH_POKES', payload });
+export const deleteSearchPokes = () => ({ type: 'DELETE_SEARCH_POKES' });
+
 export default filterReducer;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { filterByType, typeSelector } from '../../redux/slices/filterSlice';
 
 import styles from './Sidebar.module.scss';
 
@@ -28,10 +29,10 @@ export const types = [
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const selectedType = useSelector((state) => state.selectedType);
+  const selectedType = useSelector(typeSelector);
 
   const filterPokes = (e) => {
-    dispatch({ type: 'FILTER_BY_TYPE', payload: e.target.outerText });
+    dispatch(filterByType(e.target.outerText));
   };
 
   return (

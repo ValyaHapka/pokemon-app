@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import searchImg from '../../assets/svg/search.svg';
 import closeImg from '../../assets/svg/close.svg';
 import styles from './Search.module.scss';
+import { deleteSearchPokes, searchPokes } from '../../redux/slices/filterSlice';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -13,14 +14,14 @@ const Search = () => {
   const updateValues = useCallback(
     (e) => {
       setLocalValue(e.target.value);
-      dispatch({ type: 'SEARCH_POKES', payload: e.target.value });
+      dispatch(searchPokes(e.target.value));
     },
     [dispatch],
   );
 
   const deleteValues = useCallback(() => {
     setLocalValue('');
-    dispatch({ type: 'DELETE_SEARCH_POKES' });
+    dispatch(deleteSearchPokes());
     inputRef.current.focus();
   }, [dispatch]);
 
