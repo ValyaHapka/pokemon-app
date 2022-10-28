@@ -4,6 +4,12 @@
   align-items: center;
   flex-direction: column;
   gap: 10px;
+  transition: 0.3s;
+  &:hover {
+    background-color: darken($color: rgb(175, 173, 173), $amount: 10);
+    border-color: darken($color: rgb(175, 173, 173), $amount: 10);
+    border-radius: 5px;
+  }
   img {
     width: 160px;
     height: 200px;

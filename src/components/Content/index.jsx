@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import PokemonCard from '../PokemonCard';
 import Sidebar from '../Sidebar';
 import { getAllPokemons } from '../../redux/asyncActions/initialQuery';
-import styles from './Content.module.scss';
 import { pokesSelector } from '../../redux/slices/filterSlice';
+import styles from './Content.module.scss';
 
 const Content = () => {
   const dispatch = useDispatch();
