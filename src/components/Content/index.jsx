@@ -9,34 +9,38 @@ import styles from './Content.module.scss';
 
 const Content = () => {
   const dispatch = useDispatch();
-  const { pokes, initialState } = useSelector(pokesSelector);
+  const { pokes, isLoaded } = useSelector(pokesSelector);
 
   useEffect(() => {
     dispatch(getAllPokemons());
   }, [dispatch]);
 
   return (
-    <div className={styles.content}>
-      <div className={styles.content_filters}>
-        <Sidebar initialState={initialState} />
-      </div>
-      <div className={styles.content_list}>
-        {pokes.length >= 1 ? (
-          pokes.map((poke) => {
-            return (
-              <PokemonCard
-                key={poke.name}
-                img={poke.sprites.front_default}
-                name={poke.name}
-                type={poke.types[0].type.name}
-              />
-            );
-          })
-        ) : (
-          <span>😕 sorry, we don't have such Pokemon</span>
-        )}
-      </div>
-    </div>
+    <>
+      {isLoaded && (
+        <div className={styles.content}>
+          <div className={styles.content_filters}>
+            <Sidebar />
+          </div>
+          <div className={styles.content_list}>
+            {pokes.length >= 1 ? (
+              pokes.map((poke) => {
+                return (
+                  <PokemonCard
+                    key={poke.name}
+                    img={poke.sprites.front_default}
+                    name={poke.name}
+                    type={poke.types[0].type.name}
+                  />
+                );
+              })
+            ) : (
+              <span>😕 sorry, we don't have such Pokemon</span>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
