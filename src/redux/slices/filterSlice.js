@@ -2,7 +2,7 @@ const defaultState = {
   pokes: [],
   initialState: [],
   searchValue: '',
-  selectedType: '',
+  selectedType: 'All',
   isLoaded: false,
 };
 
@@ -14,6 +14,8 @@ const filterReducer = (state = defaultState, action) => {
       return { ...state, pokes: [...state.pokes, action.payload] };
     case 'CLEAR_POKES':
       return { ...state, pokes: [] };
+    case 'CLEAR_INITIAL':
+      return { ...state, initialState: [] };
     case 'FILTER_BY_TYPE':
       const result = { ...state, selectedType: action.payload };
       const pokesArr = state.initialState.filter((poke) => {
@@ -49,7 +51,6 @@ const filterReducer = (state = defaultState, action) => {
 };
 
 export const pokesSelector = (state) => state;
-export const typeSelector = (state) => state.selectedType;
 
 export const setInitialPokes = (payload) => ({ type: 'INITIAL_POKES', payload });
 export const setPokes = (payload) => ({ type: 'ADD_POKES', payload });
@@ -58,5 +59,6 @@ export const searchPokes = (payload) => ({ type: 'SEARCH_POKES', payload });
 export const deleteSearchPokes = () => ({ type: 'DELETE_SEARCH_POKES' });
 export const setIsLoaded = (payload) => ({ type: 'IS_LOADED', payload });
 export const clearPokes = () => ({ type: 'CLEAR_POKES' });
+export const clearInitial = () => ({ type: 'CLEAR_INITIAL' });
 
 export default filterReducer;
