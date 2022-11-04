@@ -17,7 +17,7 @@ const filterReducer = (state = defaultState, action) => {
     case 'CLEAR_INITIAL':
       return { ...state, initialState: [] };
     case 'FILTER_BY_TYPE':
-      const result = { ...state, selectedType: action.payload };
+      const result = { ...state, selectedType: action.payload, searchValue: '' };
       const pokesArr = state.initialState.filter((poke) => {
         if (result.selectedType === 'All') {
           return state.initialState;
@@ -33,14 +33,14 @@ const filterReducer = (state = defaultState, action) => {
       });
       return { ...result, pokes: pokesArr };
     case 'SEARCH_POKES': {
-      const result = { ...state, searchValue: action.payload };
+      const result = { ...state, searchValue: action.payload, selectedType: 'All' };
       const newArr = state.initialState.filter((p) =>
         p.name.toLowerCase().includes(state.searchValue.toLowerCase()),
       );
       return { ...result, pokes: newArr };
     }
     case 'DELETE_SEARCH_POKES': {
-      return { ...state, pokes: state.initialState, searchValue: '' };
+      return { ...state, pokes: state.initialState, searchValue: '', selectedType: 'All' };
     }
     case 'IS_LOADED': {
       return { ...state, isLoaded: action.payload };

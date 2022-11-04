@@ -21,7 +21,30 @@ const FullPokemon = () => {
     <>
       {isLoaded && (
         <div className={styles.wrapper}>
-          <img src={pokemon.sprites.front_default} alt="Pokemon" />
+          <h1>{name}</h1>
+          <div className={styles.wrapper_info}>
+            <img src={pokemon.sprites.front_default} alt="Pokemon" />
+            <ul className={styles.wrapper_info_data}>
+              <li className={styles.wrapper_info_data_element}>
+                <h4>Type</h4>
+              </li>
+              <li className={styles.wrapper_info_data_element}>
+                <h4>Type</h4>
+              </li>
+              <li className={styles.wrapper_info_data_element}>
+                <h4>Type</h4>
+              </li>
+              <li className={styles.wrapper_info_data_element}>
+                <h4>Type</h4>
+              </li>
+            </ul>
+            <ul className={styles.wrapper_info_stats}>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
         </div>
       )}
     </>

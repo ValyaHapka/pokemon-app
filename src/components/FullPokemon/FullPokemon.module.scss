@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  &_info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    img {
+      width: 300px;
+      height: 250px;
+    }
+    &_data {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      &_element {
+        display: flex;
+        justify-content: space-between;
+        h4 {
+          color: rgb(168, 168, 168);
+        }
+      }
+    }
+    &_stats {
+    }
+  }
+}
