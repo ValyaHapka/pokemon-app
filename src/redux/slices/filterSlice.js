@@ -3,7 +3,7 @@ const defaultState = {
   initialState: [],
   searchValue: '',
   selectedType: 'All',
-  isLoaded: false,
+  isLoading: true,
 };
 
 const filterReducer = (state = defaultState, action) => {
@@ -42,8 +42,8 @@ const filterReducer = (state = defaultState, action) => {
     case 'DELETE_SEARCH_POKES': {
       return { ...state, pokes: state.initialState, searchValue: '', selectedType: 'All' };
     }
-    case 'IS_LOADED': {
-      return { ...state, isLoaded: action.payload };
+    case 'IS_LOADING': {
+      return { ...state, isLoading: action.payload };
     }
     default:
       return { ...state };
@@ -57,7 +57,7 @@ export const setPokes = (payload) => ({ type: 'ADD_POKES', payload });
 export const filterByType = (payload) => ({ type: 'FILTER_BY_TYPE', payload });
 export const searchPokes = (payload) => ({ type: 'SEARCH_POKES', payload });
 export const deleteSearchPokes = () => ({ type: 'DELETE_SEARCH_POKES' });
-export const setIsLoaded = (payload) => ({ type: 'IS_LOADED', payload });
+export const setIsLoading = (payload) => ({ type: 'IS_LOADING', payload });
 export const clearPokes = () => ({ type: 'CLEAR_POKES' });
 export const clearInitial = () => ({ type: 'CLEAR_INITIAL' });
 

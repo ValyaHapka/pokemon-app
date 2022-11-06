@@ -4,20 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import PokemonCard from '../PokemonCard';
 import Sidebar from '../Sidebar';
 import { getAllPokemons } from '../../redux/asyncActions/initialQuery';
-import { pokesSelector } from '../../redux/slices/filterSlice';
+import { pokesSelector, searchPokes } from '../../redux/slices/filterSlice';
 import styles from './Content.module.scss';
 
 const Content = () => {
   const dispatch = useDispatch();
-  const { pokes, isLoaded } = useSelector(pokesSelector);
+  const { pokes, isLoading } = useSelector(pokesSelector);
 
   useEffect(() => {
     dispatch(getAllPokemons());
+    dispatch(searchPokes(''));
   }, [dispatch]);
 
   return (
     <>
-      {isLoaded && (
+      {isLoading === false ? (
         <div className={styles.content}>
           <div className={styles.content_filters}>
             <Sidebar />
@@ -39,6 +40,8 @@ const Content = () => {
             )}
           </div>
         </div>
+      ) : (
+        <div className={styles.spinner} />
       )}
     </>
   );

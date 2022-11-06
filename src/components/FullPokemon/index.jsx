@@ -7,19 +7,19 @@ import styles from './FullPokemon.module.scss';
 const FullPokemon = () => {
   const { name } = useParams();
   const [pokemon, setPokemon] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoadingPoke, setIsLoadingPoke] = useState(true);
   useEffect(() => {
     const queryFunc = async () => {
       const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
       const { data } = await axios.get(url);
       setPokemon(data);
-      setIsLoaded(true);
+      setIsLoadingPoke(false);
     };
     queryFunc();
   }, [name]);
   return (
     <>
-      {isLoaded && (
+      {isLoadingPoke === false && (
         <div className={styles.wrapper}>
           <h1>{name}</h1>
           <div className={styles.wrapper_info}>
@@ -39,10 +39,18 @@ const FullPokemon = () => {
               </li>
             </ul>
             <ul className={styles.wrapper_info_stats}>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+              <li>
+                <h4>Type</h4>
+              </li>
+              <li>
+                <h4>Type</h4>
+              </li>
+              <li>
+                <h4>Type</h4>
+              </li>
+              <li>
+                <h4>Type</h4>
+              </li>
             </ul>
           </div>
         </div>
